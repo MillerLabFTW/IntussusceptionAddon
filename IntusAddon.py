@@ -1,6 +1,6 @@
 
 bl_info = {
-    "name": "Intusseception",
+    "name": "Intussusception",
     "category": "Add Mesh",
     "author": "Saarang Panchavati"
 }
@@ -21,7 +21,7 @@ from bpy.props import (StringProperty,
 
 class Intus(bpy.types.Operator):
      bl_idname = "mesh.gen_intus"
-     bl_label = "Intusseception"
+     bl_label = "Intussuception"
      bl_options = {'REGISTER', 'UNDO'} 
 
      prin = bpy.props.BoolProperty(name = "Print Ready", description = "Adjust model to be dimensions for printing", default = False)
@@ -52,12 +52,13 @@ class Intus(bpy.types.Operator):
          bpy.ops.object.delete(use_global=True)
          bpy.context.space_data.viewport_shade = 'SOLID'
          verts = []
+         
+         length = self.len
+         theta = self.angle
          if(self.prin == True):
              length = 16
              theta = 90
              
-         length = self.len
-         theta = self.angle
          init_x = -length/2
          init_verts = [(init_x,0,0)]
              
