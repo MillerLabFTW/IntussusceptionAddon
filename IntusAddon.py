@@ -25,6 +25,8 @@ class Intus(bpy.types.Operator):
      bl_options = {'REGISTER', 'UNDO'} 
 
      prin = bpy.props.BoolProperty(name = "Print Ready", description = "Adjust model to be dimensions for printing", default = False)
+     
+     twoD = bpy.props.BoolProperty(name = "2D Model", description = "2D positive flow model", default = False)
 
      len = bpy.props.IntProperty(name = "Length",description = "Length of Whole Structure", default = 20, min = 10, max = 50)
 
@@ -49,16 +51,16 @@ class Intus(bpy.types.Operator):
      
      def execute(self,context):
          bpy.ops.object.select_all(action='TOGGLE')
+         
          bpy.ops.object.delete(use_global=True)
+         
          bpy.context.space_data.viewport_shade = 'SOLID'
          verts = []
-         
          length = self.len
          theta = self.angle
          if(self.prin == True):
              length = 16
              theta = 90
-             
          init_x = -length/2
          init_verts = [(init_x,0,0)]
              
@@ -138,7 +140,12 @@ class Intus(bpy.types.Operator):
          verts.pop(1)
          verts.pop(1)
 
-
+         if(self.twoD == True):
+             for f in range(len(verts)):
+                 x,y,z = verts[f]
+                 verts[f] = (x,y,0)
+                 
+         print(verts)        
          edges = []
 
          for i in range(int(math.pow(2,divs)-1)):
@@ -153,10 +160,10 @@ class Intus(bpy.types.Operator):
          if(self.prin == True):
              addition = 15
      
-         print(edges)  
+ 
          if(self.inout):
              verts.insert(0,(init_x - addition, 0,0))
-             print(verts)
+
              for f in range(len(edges)):
                  x,y=edges[f]
                  edges[f] = (x+1,y+1)
@@ -218,12 +225,18 @@ class Intus(bpy.types.Operator):
          if(self.boundBox == True):
              if(not self.prin):
                  bpy.ops.mesh.primitive_cube_add(radius = length/2)
-                 bpy.context.object.scale = (1.25,.75,.5)
+                 if(self.twoD == True):
+                    bpy.context.object.scale = (1.25,.75,.25)
+                 else:
+                     bpy.context.object.scale = (1.25, .75,.5)
                  bpy.context.space_data.viewport_shade = 'WIREFRAME'
                  bpy.data.objects[1]
              else:
                  bpy.ops.mesh.primitive_cube_add(radius = 1)
-                 bpy.context.object.scale = (17,7,5.5)
+                 if(self.twoD == True):
+                    bpy.context.object.scale = (17,7,2)
+                 else:
+                     bpy.context.object.scale = (17,7,5.5)
                  bpy.context.space_data.viewport_shade = 'WIREFRAME'
                  bpy.data.objects[1]
              
@@ -234,7 +247,7 @@ class Intus(bpy.types.Operator):
              for i in range(1,int(math.pow(2,divs)-1)):
                  if(i == 1 or i%4==0):
                      r/=(math.pow(2,1/self.murrayNum))
-                 print(r)
+
                  obj.data.skin_vertices[0].data[2*i+1].radius = r,r
                  obj.data.skin_vertices[0].data[2*i+2].radius = r,r   
                  
@@ -250,7 +263,18 @@ class Intus(bpy.types.Operator):
                      obj.data.skin_vertices[0].data[2*i+1].radius = r1,r1
                      obj.data.skin_vertices[0].data[2*i+2].radius = r2,r2
                      
+                     
+         # Make the new object active / the only selected
+         bpy.ops.object.select_all(action='DESELECT')
+         bpy.data.objects['ScriptedVessels'].select = True
+         bpy.context.scene.objects.active = bpy.data.objects['ScriptedVessels']
+
+         # go to editmode and apply remove doubles
+         bpy.ops.object.mode_set(mode='EDIT')
+         bpy.ops.mesh.remove_doubles(threshold=0.01, use_unselected=False)
+         bpy.ops.object.mode_set(mode='OBJECT')
          return {'FINISHED'} 
+     
 
 def menu_func(self, context):
     self.layout.operator(Intus.bl_idname)
