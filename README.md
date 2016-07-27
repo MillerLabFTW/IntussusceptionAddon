@@ -1,7 +1,6 @@
 # Intussusception Addon for Blender
 
-authored by Saarang Panchavati, Miller Lab, Rice University, July 2016
-advisor: Jordan Miller
+Authored by Saarang Panchavati, Miller Lab, Rice University, July 2016 | Advisor: Jordan Miller
 
 A [Blender](http://www.blender.org) add-on for generating Intussusception fractal vasculature for 3D printing and computational fluid dynamics simulations and modeling.
 
