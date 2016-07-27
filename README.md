@@ -25,6 +25,8 @@ This git repository includes: The python file for the add-on, and explanatory vi
 
 1. Download this repository: [https://github.com/MillerLabFTW/IntussusceptionAddon/archive/master.zip](https://github.com/MillerLabFTW/IntussusceptionAddon/archive/master.zip)
 
+1. Unzip the repository. You should find the required `IntusAddon.py` inside.
+
 1. In Blender, navigate to `User Preferences > Add-ons > Install from File ` and find and select the `IntusAddon.py` file in this repository
 
 1. Ensure it is checked in the add-on menu - It will be called `Add Mesh: Intussusception`
