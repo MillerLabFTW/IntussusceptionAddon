@@ -17,7 +17,7 @@ Print-ready scaling, length, angle, number of divisions, reduction in branching 
 
 ###Documentation 
 
-This git repository includes: The python file for the add-on. 
+This git repository includes: The python file for the add-on, and explanatory videos. 
 
 ###Installation/Usage Instructions
 
