@@ -27,13 +27,28 @@ This git repository includes: The python file for the add-on, and explanatory vi
 
 1. Unzip the repository. You should find the required `IntusAddon.py` inside.
 
-1. In Blender, navigate to `User Preferences > Add-ons > Install from File ` and find and select the `IntusAddon.py` file in this repository
+1. In Blender, navigate to `User Preferences > Add-ons > Install from File ` and find and select the `IntusAddon.py` file in this repository and activate it. Screenshots:
+
+![UserPrefs](PicsVids/ShowUserPrefs.png)
+![UserPrefs](PicsVids/UserPrefs-InstallFromFile.png)
+![UserPrefs](PicsVids/IntusAddon-Selected.png)
+
+
 
 1. Ensure it is checked in the add-on menu - It will be called `Add Mesh: Intussusception`
 
-1. To use type spacebar in the Blender Window and search for `Intussusception`
+![UserPrefs](PicsVids/IntussusceptionSelected.png)
+
+
+1. To use the add-on, in the 3D view window, type `<spacebar>` in the Blender Window and search for `Intussusception` in the pop-up.
+
+![UserPrefs](PicsVids/Intussusception-Active.png)
+
 
 1. You can adjust all the controls described above under `Overview`. To see what they will do, watch the video `Intus-Addon-Display` located in the `PicsVids` folder of this repository.
+
+![UserPrefs](PicsVids/Intussusception-Example.png)
+
 
 
 ###Acknowledgements
