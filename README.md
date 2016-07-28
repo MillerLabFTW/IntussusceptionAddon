@@ -45,7 +45,7 @@ This git repository includes: The python file for the add-on, and explanatory vi
 ![UserPrefs](PicsVids/Intussusception-Active.png)
 
 
-1. You can adjust all the controls described above under `Overview`. To see what they will do, watch the video `Intus-Addon-Display` located in the `PicsVids` folder of this repository.
+1. You can adjust all the controls described above under `Overview`. To see what they will do, watch the video [`Intus-Addon-Display`](https://github.com/MillerLabFTW/IntussusceptionAddon/blob/master/PicsVids/Intus-Addon-Display.mov?raw=true) located in the `PicsVids` folder of this repository.
 
 ![UserPrefs](PicsVids/Intussusception-Example.png)
 
