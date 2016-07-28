@@ -1,4 +1,3 @@
-
 bl_info = {
     "name": "Intussusception",
     "category": "Add Mesh",
@@ -23,10 +22,16 @@ class Intus(bpy.types.Operator):
      bl_idname = "mesh.gen_intus"
      bl_label = "Intussuception"
      bl_options = {'REGISTER', 'UNDO'} 
+     
+#Declares all customizable variables in UI of addon
 
      prin = bpy.props.BoolProperty(name = "Print Ready", description = "Adjust model to be dimensions for printing", default = False)
      
      twoD = bpy.props.BoolProperty(name = "2D Model", description = "2D positive flow model", default = False)
+     
+     pback = bpy.props.BoolProperty(name = "Narrow", description = "Moves first 2 verticies back to allow for more space", default = False)
+     
+     spacefill = bpy.props.BoolProperty(name = "Spacefilling", description = "Modifies model to maximize covered area by displacing opposite sides", default = False)
 
      len = bpy.props.IntProperty(name = "Length",description = "Length of Whole Structure", default = 20, min = 10, max = 50)
 
@@ -66,7 +71,7 @@ class Intus(bpy.types.Operator):
              
          divs = self.bran
          dist = math.ceil(math.tan(math.radians(theta/2))*length/2)
-         print(dist)
+
          
          boxheight = dist/self.reduction
          boxlen = length
@@ -80,8 +85,12 @@ class Intus(bpy.types.Operator):
          def calcMid(ind):
              x,y,z = allArr[currentBranch-1][ind]
              if(len(allArr[currentBranch-1])==2):
-                 x = init_x/2
-                 y/=2
+                 if(self.pback and divs>3):
+                     x = (x+3*init_x)/4
+                     y/=4
+                 else:
+                     x = init_x/2
+                     y/=2
                  z/=2
              else:
                  x = (allArr[currentBranch-2][int(ind/2)][0]+x)/2
@@ -129,10 +138,7 @@ class Intus(bpy.types.Operator):
                  currentBranch+=1
                  l = 1/self.reduction
                  dist*=l
-
-                     
-            
-
+   
          for f in allArr:
              for k in f:
                  verts.append(k)
@@ -144,8 +150,7 @@ class Intus(bpy.types.Operator):
              for f in range(len(verts)):
                  x,y,z = verts[f]
                  verts[f] = (x,y,0)
-                 
-         print(verts)        
+                   
          edges = []
 
          for i in range(int(math.pow(2,divs)-1)):
@@ -183,7 +188,7 @@ class Intus(bpy.types.Operator):
          bpy.context.scene.objects.link(myobject) # linking the object to the scene
  
          myobject.modifiers.new('mirror', type = 'MIRROR')
-
+         #myobject.modifiers['mirror'].
          # subdivide modifier
          myobject.modifiers.new("smoothVertices", type='SUBSURF')
           
@@ -223,6 +228,7 @@ class Intus(bpy.types.Operator):
          r = self.vertRad
          
          if(self.boundBox == True):
+             bpy.ops.view3d.snap_cursor_to_center()
              if(not self.prin):
                  bpy.ops.mesh.primitive_cube_add(radius = length/2)
                  if(self.twoD == True):
@@ -268,13 +274,30 @@ class Intus(bpy.types.Operator):
          bpy.ops.object.select_all(action='DESELECT')
          bpy.data.objects['ScriptedVessels'].select = True
          bpy.context.scene.objects.active = bpy.data.objects['ScriptedVessels']
+         
+         if(self.spacefill):
+             bpy.ops.object.modifier_apply(apply_as='DATA', modifier="mirror")
+             iter = math.pow(2,divs+1)+math.pow(2,divs)-2
+             iter = int(iter)
+             for f in range(3,iter):
+                 x,y,z = bpy.data.objects['ScriptedVessels'].data.vertices[f].co
+                 if(z!=0):
+                     if(y>0):
+                         bpy.data.objects['ScriptedVessels'].data.vertices[f].co = (x+3,y,z)
+                     else:
+                         bpy.data.objects['ScriptedVessels'].data.vertices[f].co = (x-3,y,z)
+                     
+                 print(bpy.data.objects['ScriptedVessels'].data.vertices[f].co)
+                 
 
+             
          # go to editmode and apply remove doubles
          bpy.ops.object.mode_set(mode='EDIT')
          bpy.ops.mesh.remove_doubles(threshold=0.01, use_unselected=False)
          bpy.ops.object.mode_set(mode='OBJECT')
          return {'FINISHED'} 
-     
+
+
 
 def menu_func(self, context):
     self.layout.operator(Intus.bl_idname)
@@ -287,4 +310,3 @@ def unregister():
 
 if __name__ == "__main__":
     register()
-
