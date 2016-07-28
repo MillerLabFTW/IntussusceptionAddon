@@ -21,7 +21,7 @@ This git repository includes: The python file for the add-on, and explanatory vi
 
 ###Installation/Usage Instructions
 
-1. First ensure you have downloaded and and installed the latest version of [Blender](http://www.blender.org). This add-on has been developed and tested with `Blender 2.77a`.
+1. First ensure you have downloaded and and installed the latest version of [Blender](https://www.blender.org/download/). This add-on has been developed and tested with `Blender 2.77a`.
 
 1. Download this repository: [https://github.com/MillerLabFTW/IntussusceptionAddon/archive/master.zip](https://github.com/MillerLabFTW/IntussusceptionAddon/archive/master.zip)
 
