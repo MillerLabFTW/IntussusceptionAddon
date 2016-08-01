@@ -1,4 +1,4 @@
-# Intussusception Addon for Blender
+# Intussusception Add-on for Blender
 
 Authored by Saarang Panchavati, Miller Lab, Rice University, July 2016 | Advisor: Jordan Miller
 
@@ -7,19 +7,19 @@ A [Blender](http://www.blender.org) add-on for generating Intussusception fracta
 ![MillerLab logo](Intussusception.png)
 
 
-###Overview
+##Overview
 
 Intussusception is the natural process by which one blood vessel splits into two.  This add-on is an attempt to model this process in order to create functional positive flow models for 3D vascular networks. We create fractal vasculature by starting with a single tube and sequentially, dichotomously dividing all available tubes with each fractal generation. 
 
 Currently, this add-on allows the user to adjust the following parameters: 
 
-Print-ready scaling, length, angle, number of divisions, reduction in branching distance, inlet/outlet, bounding box, skin radius, and Murray’s Law implementation. 
+Print-ready scaling, length, angle, number of divisions, reduction in branching distance, inlet/outlet, bounding box,narrowing, spacefilling skin radius, and Murray’s Law implementation. 
 
-###Documentation 
+##Documentation 
 
 This git repository includes: The python file for the add-on, and explanatory videos. 
 
-###Installation/Usage Instructions
+##Installation/Usage Instructions
 
 1. First ensure you have downloaded and and installed the latest version of [Blender](https://www.blender.org/download/). This add-on has been developed and tested with `Blender 2.77a`.
 
@@ -49,9 +49,70 @@ This git repository includes: The python file for the add-on, and explanatory vi
 
 ![UserPrefs](PicsVids/Intussusception-Example.png)
 
+###Overview of Parameters
+`Divisions` - Number of times the model divides
+
+![UserPrefs](PicsVids/gifs/divisions.gif)
+
+`Length` - Adjusts length of the model
+
+![UserPrefs](PicsVids/gifs/length.gif)
+
+`Angle` - Adjusts angle of initial branching
+
+![UserPrefs](PicsVids/gifs/angle.gif)
+
+`Reduction` - Adjusts amount by which the distance between branches decreases each division
+
+![UserPrefs](PicsVids/gifs/reduction.gif)
+
+`Inlet/Outlet` - Adds inlet and outlet to model
+
+![UserPrefs](PicsVids/gifs/inout.gif)
+
+`Bounding Box` - Adds bounding box to model 
+
+![UserPrefs](PicsVids/gifs/bounding.gif)
+
+`Print Ready` - Adjusts model and bounding box scaling to 34x14x11 dimensions
+
+![UserPrefs](PicsVids/gifs/printReady.gif)
+
+`2D Model` - Collapses Intussusception to 2 Dimensions
+
+![UserPrefs](PicsVids/gifs/2d.gif)
+
+`Narrow` - Moves back initial vertices to compact model, allowing minimal volume to be consumed by vasculature. 
+
+![UserPrefs](PicsVids/gifs/narrow.gif)
 
 
-###Acknowledgements
+`Spacefilling` - Moves groups of branches to be more space filling. Only works when `Narrow` is on.
+
+![UserPrefs](PicsVids/gifs/spacefill.gif)
+
+`Skin Radius` - Adjusts the radius of the skin modifier on all vertices
+
+![UserPrefs](PicsVids/gifs/skinrad.gif)
+
+
+####Murray’s Law
+
+[Murray’s Law](https://en.wikipedia.org/wiki/Murray%27s_law) describes the relationship between a parent branch and its daughter branches wherein parent^3 = daughter1^3 + daughter2^3+…
+
+`Murray’s Exponent` - Varies the exponent for Murray’s Law, which is generally 3
+
+`Equal Murray’s Law` - Applies Murray’s Law on the model, assuming that all daughter branches have the same radius
+
+![UserPrefs](PicsVids/gifs/emurray.gif)
+
+`Random Murray’s Law` - Applies Murray’s Law on the model, but allows daughter branches to be of varying diameter 
+
+![UserPrefs](PicsVids/gifs/rmurray.gif)
+
+
+
+##Acknowledgements
 
 
 ![MillerLab logo](MillerLab_logo.jpg)
