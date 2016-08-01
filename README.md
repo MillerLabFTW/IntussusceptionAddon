@@ -52,7 +52,7 @@ This git repository includes: The python file for the add-on, and explanatory vi
 ###Overview of Parameters
 `Divisions` - Number of times the model divides
 
-![UserPrefs](PicsVids/gifs/divisions.gif)
+![UserPrefs](PicsVids/gifs/divisions.gif = 250x250)
 
 `Length` - Adjusts length of the model
 
