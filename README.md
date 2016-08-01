@@ -13,7 +13,7 @@ Intussusception is the natural process by which one blood vessel splits into two
 
 Currently, this add-on allows the user to adjust the following parameters: 
 
-Print-ready scaling, length, angle, number of divisions, reduction in branching distance, inlet/outlet, bounding box,narrowing, spacefilling skin radius, and Murray’s Law implementation. 
+Print-ready scaling, length, angle, number of divisions, reduction in branching distance, inlet/outlet, bounding box, narrowing, spacefilling, skin radius, and Murray’s Law implementation. 
 
 ##Documentation 
 
@@ -107,7 +107,7 @@ This git repository includes: The python file for the add-on, and explanatory vi
 
 ###Murray’s Law
 
-[Murray’s Law](https://en.wikipedia.org/wiki/Murray%27s_law) describes the relationship between a parent branch and its daughter branches wherein parent<sup>3</sup>  = daughter<sub>1<sub><sup>3</sup>  + daughter<sub>2<sub><sup>3</sup> +…
+[Murray’s Law](https://en.wikipedia.org/wiki/Murray%27s_law) describes the relationship between a parent branch and its daughter branches wherein parent<sup>3</sup>  = daughter<sub>1<sub> <sup>3</sup>  ‘+’ daughter<sub>2<sub> <sup>3</sup> +…
 
 `Murray’s Exponent` - Varies the exponent for Murray’s Law, which is generally 3
 
