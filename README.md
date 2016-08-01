@@ -54,35 +54,41 @@ This git repository includes: The python file for the add-on, and explanatory vi
 
 ![UserPrefs](PicsVids/gifs/divisions.gif)
 
-<img src="PicsVids/gifs/divisions.gif" width="48">
 
 `Length` - Adjusts length of the model
 
 ![UserPrefs](PicsVids/gifs/length.gif)
 
+
 `Angle` - Adjusts angle of initial branching
 
 ![UserPrefs](PicsVids/gifs/angle.gif)
+
 
 `Reduction` - Adjusts amount by which the distance between branches decreases each division
 
 ![UserPrefs](PicsVids/gifs/reduction.gif)
 
+
 `Inlet/Outlet` - Adds inlet and outlet to model
 
 ![UserPrefs](PicsVids/gifs/inout.gif)
+
 
 `Bounding Box` - Adds bounding box to model 
 
 ![UserPrefs](PicsVids/gifs/bounding.gif)
 
+
 `Print Ready` - Adjusts model and bounding box scaling to 34x14x11 dimensions
 
 ![UserPrefs](PicsVids/gifs/printReady.gif)
 
+
 `2D Model` - Collapses Intussusception to 2 Dimensions
 
 ![UserPrefs](PicsVids/gifs/2d.gif)
+
 
 `Narrow` - Moves back initial vertices to compact model, allowing minimal volume to be consumed by vasculature. 
 
@@ -93,20 +99,22 @@ This git repository includes: The python file for the add-on, and explanatory vi
 
 ![UserPrefs](PicsVids/gifs/spacefill.gif)
 
+
 `Skin Radius` - Adjusts the radius of the skin modifier on all vertices
 
 ![UserPrefs](PicsVids/gifs/skinrad.gif)
 
 
-####Murray’s Law
+###Murray’s Law
 
-[Murray’s Law](https://en.wikipedia.org/wiki/Murray%27s_law) describes the relationship between a parent branch and its daughter branches wherein parent^3 = daughter1^3 + daughter2^3+…
+[Murray’s Law](https://en.wikipedia.org/wiki/Murray%27s_law) describes the relationship between a parent branch and its daughter branches wherein parent<sup>3</sup>  = daughter<sub>1<sub><sup>3</sup>  + daughter<sub>2<sub><sup>3</sup> +…
 
 `Murray’s Exponent` - Varies the exponent for Murray’s Law, which is generally 3
 
 `Equal Murray’s Law` - Applies Murray’s Law on the model, assuming that all daughter branches have the same radius
 
 ![UserPrefs](PicsVids/gifs/emurray.gif)
+
 
 `Random Murray’s Law` - Applies Murray’s Law on the model, but allows daughter branches to be of varying diameter 
 
