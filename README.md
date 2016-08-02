@@ -108,7 +108,7 @@ This git repository includes: The python file for the add-on, and explanatory vi
 ###Murray’s Law
 
 [Murray’s Law](https://en.wikipedia.org/wiki/Murray%27s_law) describes the relationship between a parent branch and its daughter branches wherein:
-r<sup>3</sup> <sub>p</sub> = r<sub>d<sub>1</sub> <sup>3</sup>  + r<sub>d</sub><sub>2</sub> <sup>3</sup> + … + r<sub>d<sub>n</sub> <sup>3</sup>
+r<sup>3</sup><sub>p</sub> = r<sub>d<sub>1</sub><sup>3</sup></sub>+ r<sub>d<sub>2</sub><sup>3</sup></sub> + … + r<sub>d<sub>n</sub><sup>3</sup></sub>
 
 `Murray’s Exponent` - Varies the exponent for Murray’s Law, which is generally 3
 
