@@ -13,7 +13,7 @@ Intussusception is the natural process by which one blood vessel splits into two
 
 Currently, this add-on allows the user to adjust the following parameters: 
 
-Print-ready scaling, length, angle, number of divisions, reduction in branching distance, inlet/outlet, bounding box, narrowing, spacefilling, skin radius, and Murray’s Law implementation. 
+Print-ready scaling, length, angle, number of divisions, reduction in branching distance, inlet/outlet, bounding box, narrowing, space filling, skin radius, and Murray’s Law implementation. 
 
 ##Documentation 
 
