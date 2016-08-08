@@ -146,10 +146,7 @@ class Intus(bpy.types.Operator):
          verts.pop(1)
          verts.pop(1)
 
-         if(self.twoD == True):
-             for f in range(len(verts)):
-                 x,y,z = verts[f]
-                 verts[f] = (x,y,0)
+       
                    
          edges = []
 
@@ -289,8 +286,11 @@ class Intus(bpy.types.Operator):
                      
                  print(bpy.data.objects['ScriptedVessels'].data.vertices[f].co)
                  
-
-             
+         if(self.twoD):
+             for f in range(len(bpy.data.objects['ScriptedVessels'].data.vertices)):
+                 x,y,z = bpy.data.objects['ScriptedVessels'].data.vertices[f].co
+                 bpy.data.objects['ScriptedVessels'].data.vertices[f].co = (x,y,0)    
+                 
          # go to editmode and apply remove doubles
          bpy.ops.object.mode_set(mode='EDIT')
          bpy.ops.mesh.remove_doubles(threshold=0.01, use_unselected=False)
