@@ -64,7 +64,7 @@ class Intus(bpy.types.Operator):
          length = self.len
          theta = self.angle
          if(self.prin == True):
-             length = 16
+             length = 16 
              theta = 90
          init_x = -length/2
          init_verts = [(init_x,0,0)]
@@ -163,13 +163,9 @@ class Intus(bpy.types.Operator):
              addition = 15
      
  
-         if(self.inout):
-             verts.insert(0,(init_x - addition, 0,0))
+          
 
-             for f in range(len(edges)):
-                 x,y=edges[f]
-                 edges[f] = (x+1,y+1)
-         edges.insert(0,(0,1))
+         
          bpy.ops.object.delete(use_global=False)
 
             
@@ -221,6 +217,47 @@ class Intus(bpy.types.Operator):
  
          mymesh.update(calc_edges=True) #so the edges display properly...
          
+         if(self.inout):
+             if(self.boundBox):
+                 x = -2*length
+                 y = .375* length
+             else:
+                 x = -length
+                 y = -length/8
+             verts = [(x,0,0),(y,0,0)]
+             edges = [(0,1)]
+             mymesh = bpy.data.meshes.new("inout")
+          
+             myobject = bpy.data.objects.new("inout", mymesh)
+
+             bpy.context.scene.objects.link(myobject) # linking the object to the scene
+ 
+             myobject.modifiers.new('mirror', type = 'MIRROR')
+
+             myobject.modifiers.new("smoothVertices", type='SUBSURF')
+     
+             myobject.modifiers['smoothVertices'].levels = 3
+             myobject.modifiers['smoothVertices'].render_levels = 3
+   
+             mymesh.from_pydata(verts,edges ,[]) 
+             mymesh.update(calc_edges=True) 
+ 
+             myobject.modifiers.new("addSkin", type='SKIN')
+             myobject.modifiers['addSkin'].use_x_symmetry = True
+             myobject.modifiers['addSkin'].use_y_symmetry = True
+             myobject.modifiers['addSkin'].use_z_symmetry = True
+             myobject.modifiers['addSkin'].use_smooth_shade = True
+              
+             #subdivide modifier
+             myobject.modifiers.new("makeCylindrical", type='SUBSURF')
+             
+             # Increase subdivisions
+             myobject.modifiers['makeCylindrical'].levels = 3
+             myobject.modifiers['makeCylindrical'].render_levels = 3
+ 
+ 
+             mymesh.update(calc_edges=True)
+         
          obj = bpy.data.objects[0]
          r = self.vertRad
          
@@ -237,9 +274,9 @@ class Intus(bpy.types.Operator):
              else:
                  bpy.ops.mesh.primitive_cube_add(radius = 1)
                  if(self.twoD == True):
-                    bpy.context.object.scale = (17,7,2)
+                    bpy.context.object.scale = (16,7,2)
                  else:
-                     bpy.context.object.scale = (17,7,5.5)
+                     bpy.context.object.scale = (16,7,5.5)
                  bpy.context.space_data.viewport_shade = 'WIREFRAME'
                  bpy.data.objects[1]
              
@@ -289,13 +326,45 @@ class Intus(bpy.types.Operator):
          if(self.twoD):
              for f in range(len(bpy.data.objects['ScriptedVessels'].data.vertices)):
                  x,y,z = bpy.data.objects['ScriptedVessels'].data.vertices[f].co
-                 bpy.data.objects['ScriptedVessels'].data.vertices[f].co = (x,y,0)    
+                 bpy.data.objects['ScriptedVessels'].data.vertices[f].co = (x,y,0) 
+                 
+         if(self.inout):
+             bpy.data.objects['ScriptedVessels'].select = True
+             bpy.context.scene.objects.active = bpy.data.objects['ScriptedVessels']
+             bpy.ops.object.modifier_apply(apply_as='DATA', modifier="mirror")
+             
+             bpy.ops.object.select_all(action='DESELECT')
+             bpy.data.objects['inout'].select = True
+             bpy.context.scene.objects.active = bpy.data.objects['inout']
+             bpy.ops.object.modifier_apply(apply_as='DATA', modifier="mirror")
+             
+             bpy.ops.object.select_all(action='DESELECT')
+             bpy.data.objects['ScriptedVessels'].select = True
+             bpy.data.objects['inout'].select = True
+             bpy.ops.object.join()
+             
+             bpy.ops.object.select_all(action='DESELECT')
+             bpy.data.objects['inout'].select = True
+             bpy.context.scene.objects.active = bpy.data.objects['inout']
+             bpy.data.objects['inout'].data.vertices[1].co = verts[0]
+             bpy.data.objects['inout'].data.vertices[1].co = verts[1]
+             
+             
+             
+             
+                 
+             
+             
+
+         
                  
          # go to editmode and apply remove doubles
          bpy.ops.object.mode_set(mode='EDIT')
          bpy.ops.mesh.remove_doubles(threshold=0.01, use_unselected=False)
          bpy.ops.object.mode_set(mode='OBJECT')
          return {'FINISHED'} 
+     
+ 
 
 
 
