@@ -323,11 +323,11 @@ class Intus(bpy.types.Operator):
                      
                  print(bpy.data.objects['ScriptedVessels'].data.vertices[f].co)
                  
+          
          if(self.twoD):
              for f in range(len(bpy.data.objects['ScriptedVessels'].data.vertices)):
                  x,y,z = bpy.data.objects['ScriptedVessels'].data.vertices[f].co
-                 bpy.data.objects['ScriptedVessels'].data.vertices[f].co = (x,y,0) 
-                 
+                 bpy.data.objects['ScriptedVessels'].data.vertices[f].co = (x,y,0)      
          if(self.inout):
              bpy.data.objects['ScriptedVessels'].select = True
              bpy.context.scene.objects.active = bpy.data.objects['ScriptedVessels']
@@ -347,17 +347,20 @@ class Intus(bpy.types.Operator):
              bpy.data.objects['inout'].select = True
              bpy.context.scene.objects.active = bpy.data.objects['inout']
              bpy.data.objects['inout'].data.vertices[1].co = verts[0]
-             bpy.data.objects['inout'].data.vertices[1].co = verts[1]
-             
-             
-             
-             
-                 
-             
-             
-
+             bpy.data.objects['inout'].data.vertices[1].co = verts[1]  
          
-                 
+         if(divs!=0):    
+             p = 600/1.5/20#scale factor
+             l = length/2 * math.pow(2,1/2)
+             d = self.vertRad*2
+             res = l*d*p/(math.pow(2,divs)*divs)
+             for f in range(0,divs-3):
+                 res+=l*p*d/(math.pow(2,f)*(f+1))
+             
+             print(res)
+         
+         
+                        
          # go to editmode and apply remove doubles
          bpy.ops.object.mode_set(mode='EDIT')
          bpy.ops.mesh.remove_doubles(threshold=0.01, use_unselected=False)
