@@ -221,6 +221,8 @@ class Intus(bpy.types.Operator):
              if(self.boundBox):
                  x = -2*length
                  y = .375* length
+                 if(self.spacefill):
+                     y=length/3.2
              else:
                  x = -length
                  y = -length/8
