@@ -260,7 +260,7 @@ class Intus(bpy.types.Operator):
  
              mymesh.update(calc_edges=True)
          
-         obj = bpy.data.objects[0]
+         obj = bpy.data.objects['ScriptedVessels']
          r = self.vertRad
          
          if(self.boundBox == True):
@@ -284,6 +284,10 @@ class Intus(bpy.types.Operator):
              
          for v in obj.data.skin_vertices[0].data:
              v.radius = r,r
+             
+         if(self.inout == True):
+             for v in bpy.data.objects['inout'].data.skin_vertices[0].data:
+                 v.radius = r,r
              
          if(self.emurray == True and self.rmurray == False):
              for i in range(1,int(math.pow(2,divs)-1)):
