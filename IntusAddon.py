@@ -55,9 +55,7 @@ class Intus(bpy.types.Operator):
      
      
      def execute(self,context):
-         bpy.ops.object.select_all(action='TOGGLE')
-         
-         bpy.ops.object.delete(use_global=True)
+
          
          bpy.context.space_data.viewport_shade = 'SOLID'
          verts = []
@@ -163,11 +161,7 @@ class Intus(bpy.types.Operator):
              addition = 15
      
  
-          
-
-         
-         bpy.ops.object.delete(use_global=False)
-
+     
             
             
          #Define mesh and object
@@ -194,7 +188,7 @@ class Intus(bpy.types.Operator):
  
          #Create mesh
  
-         mymesh.from_pydata(verts,edges ,[]) 
+         mymesh.from_pydata(verts, edges ,[]) 
          mymesh.update(calc_edges=True) 
  
  
@@ -355,22 +349,36 @@ class Intus(bpy.types.Operator):
              bpy.data.objects['inout'].data.vertices[1].co = verts[0]
              bpy.data.objects['inout'].data.vertices[1].co = verts[1]  
          
+         
          if(divs!=0):    
              p = 600/1.5/20#scale factor
-             l = length/2 * math.pow(2,1/2)
+             l = length/2 * math.pow(2,1/2) 
              d = self.vertRad*2
-             res = l*d*p/(math.pow(2,divs)*divs)
-             for f in range(0,divs-3):
-                 res+=l*p*d/(math.pow(2,f)*(f+1))
              
+              #resistance of inner branch
+             if(divs>=2):
+                 l/=2
+             
+             if(divs == 1):
+                 res = (l*d*p)/(math.pow(2,divs)*divs)*2
+                 
+             if(divs == 2):
+                 res = (l*d*p)
+                 res+= l*p*d/2
+
+             else:
+                 res = (l*d*p)/(math.pow(2,divs))
+                 for f in range(0,divs-1):
+                     res+=l*p*d/(math.pow(2,f)*(f+1))
+           
              print(res)
          
          
                         
          # go to editmode and apply remove doubles
-         bpy.ops.object.mode_set(mode='EDIT')
-         bpy.ops.mesh.remove_doubles(threshold=0.01, use_unselected=False)
-         bpy.ops.object.mode_set(mode='OBJECT')
+        # bpy.ops.object.mode_set(mode='EDIT')
+         #bpy.ops.mesh.remove_doubles(threshold=0.01, use_unselected=False)
+         #bpy.ops.object.mode_set(mode='OBJECT')
          return {'FINISHED'} 
      
  
