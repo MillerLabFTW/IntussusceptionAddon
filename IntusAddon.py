@@ -27,13 +27,15 @@ class Intus(bpy.types.Operator):
 
      prin = bpy.props.BoolProperty(name = "Print Ready", description = "Adjust model to be dimensions for printing", default = False)
      
+     im = bpy.props.BoolProperty(name = "Imaging Scale", description = "Modifies scale for imaging with 8mm diagonal constraint", default = False)
+     
      twoD = bpy.props.BoolProperty(name = "2D Model", description = "2D positive flow model", default = False)
      
      pback = bpy.props.BoolProperty(name = "Narrow", description = "Moves first 2 verticies back to allow for more space", default = False)
      
      spacefill = bpy.props.BoolProperty(name = "Spacefilling", description = "Modifies model to maximize covered area by displacing opposite sides", default = False)
 
-     len = bpy.props.IntProperty(name = "Length",description = "Length of Whole Structure", default = 20, min = 10, max = 50)
+     len = bpy.props.IntProperty(name = "Length",description = "Length of Whole Structure", default = 20, min = 0, max = 50)
 
      angle = bpy.props.IntProperty(name = "Angle", description = "Initial angle of branching", default = 90, min = 30, max = 150)
 
@@ -63,6 +65,9 @@ class Intus(bpy.types.Operator):
          theta = self.angle
          if(self.prin == True):
              length = 16 
+             theta = 90
+         if(self.im==True):
+             length = 5
              theta = 90
          init_x = -length/2
          init_verts = [(init_x,0,0)]
@@ -259,7 +264,7 @@ class Intus(bpy.types.Operator):
          
          if(self.boundBox == True):
              bpy.ops.view3d.snap_cursor_to_center()
-             if(not self.prin):
+             if(not self.prin and not self.im):
                  bpy.ops.mesh.primitive_cube_add(radius = length/2)
                  if(self.twoD == True):
                     bpy.context.object.scale = (1.25,.75,.25)
@@ -268,13 +273,17 @@ class Intus(bpy.types.Operator):
                  bpy.context.space_data.viewport_shade = 'WIREFRAME'
                  bpy.data.objects[1]
              else:
-                 bpy.ops.mesh.primitive_cube_add(radius = 1)
-                 if(self.twoD == True):
-                    bpy.context.object.scale = (16,7,2)
+                 if(self.im == True):
+                     bpy.ops.mesh.primitive_cube_add(radius = 2*math.pow(2,1/2))
+                     bpy.context.space_data.viewport_shade = 'WIREFRAME'
                  else:
-                     bpy.context.object.scale = (16,7,5.5)
-                 bpy.context.space_data.viewport_shade = 'WIREFRAME'
-                 bpy.data.objects[1]
+                     bpy.ops.mesh.primitive_cube_add(radius = 1)
+                     if(self.twoD == True):
+                         bpy.context.object.scale = (16,7,2)
+                     else:
+                         bpy.context.object.scale = (16,7,5.5)
+                     bpy.context.space_data.viewport_shade = 'WIREFRAME'
+                     bpy.data.objects[1]
              
          for v in obj.data.skin_vertices[0].data:
              v.radius = r,r
