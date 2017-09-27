@@ -292,9 +292,9 @@ class Intus(bpy.types.Operator):
              for v in bpy.data.objects['inout'].data.skin_vertices[0].data:
                  v.radius = r,r
              
-         if(self.emurray == True and self.rmurray == False):
+         if(self.emurray == True and self.rmurray == False):  
              for i in range(1,int(math.pow(2,divs)-1)):
-                 if(i == 1 or i%4==0):
+                 if(i == 1 or (i+1)%4==0):
                      r/=(math.pow(2,1/self.murrayNum))
 
                  obj.data.skin_vertices[0].data[2*i+1].radius = r,r
