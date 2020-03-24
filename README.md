@@ -17,7 +17,9 @@ Print-ready scaling, length, angle, number of divisions, reduction in branching 
 
 ## Documentation 
 
-This git repository includes: The python file for the add-on, and explanatory videos. 
+This git repository includes: The python file for the add-on, and explanatory videos.
+
+The tutorial videos below were taken in Blender 2.79. We provide an updated version for Blender 2.8x as well as the legacy version for Blender 2.7x.
 
 ## Installation/Usage Instructions
 
