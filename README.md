@@ -7,7 +7,7 @@ A [Blender](http://www.blender.org) add-on for generating Intussusception fracta
 ![MillerLab logo](Intussusception.png)
 
 
-##Overview
+## Overview
 
 Intussusception is the natural process by which one blood vessel splits into two.  This add-on is an attempt to model this process in order to create functional positive flow models for 3D vascular networks. We create fractal vasculature by starting with a single tube and sequentially, dichotomously dividing all available tubes with each fractal generation. 
 
@@ -15,11 +15,11 @@ Currently, this add-on allows the user to adjust the following parameters:
 
 Print-ready scaling, length, angle, number of divisions, reduction in branching distance, inlet/outlet, bounding box, narrowing, space filling, skin radius, and Murray’s Law implementation. 
 
-##Documentation 
+## Documentation 
 
 This git repository includes: The python file for the add-on, and explanatory videos. 
 
-##Installation/Usage Instructions
+## Installation/Usage Instructions
 
 1. First ensure you have downloaded and and installed the latest version of [Blender](https://www.blender.org/download/). This add-on has been developed and tested with `Blender 2.77a`.
 
@@ -49,7 +49,7 @@ This git repository includes: The python file for the add-on, and explanatory vi
 
 ![UserPrefs](PicsVids/Intussusception-Example.png)
 
-###Overview of Parameters
+### Overview of Parameters
 `Divisions` - Number of times the model divides
 
 ![UserPrefs](PicsVids/gifs/divisions.gif)
@@ -105,7 +105,7 @@ This git repository includes: The python file for the add-on, and explanatory vi
 ![UserPrefs](PicsVids/gifs/skinrad.gif)
 
 
-###Murray’s Law
+### Murray’s Law
 
 [Murray’s Law](https://en.wikipedia.org/wiki/Murray%27s_law) describes the relationship between a parent branch and its daughter branches wherein:
 r<sup>3</sup><sub>p</sub> = r<sub>d<sub>1</sub></sub><sup>3</sup>+ r<sub>d<sub>2</sub></sub><sup>3</sup> + … + r<sub>d<sub>n</sub></sub><sup>3</sup>
@@ -123,7 +123,7 @@ r<sup>3</sup><sub>p</sub> = r<sub>d<sub>1</sub></sub><sup>3</sup>+ r<sub>d<sub>2
 
 
 
-##Acknowledgements
+## Acknowledgements
 
 
 ![MillerLab logo](MillerLab_logo.jpg)
