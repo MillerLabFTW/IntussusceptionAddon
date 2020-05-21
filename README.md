@@ -19,17 +19,17 @@ Print-ready scaling, length, angle, number of divisions, reduction in branching 
 
 This git repository includes: The python file for the add-on, and explanatory videos.
 
-The tutorial videos below were taken in Blender 2.79. We provide an updated version for Blender 2.8x as well as the legacy version for Blender 2.7x.
+The tutorial videos below were taken in `Blender 2.77a`. We provide an updated version for `Blender 2.8x` as well as the legacy version for `Blender 2.7x`.
 
 ## Installation/Usage Instructions
 
-1. First ensure you have downloaded and and installed the latest version of [Blender](https://www.blender.org/download/). This add-on has been developed and tested with `Blender 2.77a`.
+1. First ensure you have downloaded and and installed the latest version of [Blender](https://www.blender.org/download/). This add-on was originally developed and tested with `Blender 2.77a`, then upgraded for the new `Blender 2.8x` Python API. 
 
 1. Download this repository: [https://github.com/MillerLabFTW/IntussusceptionAddon/archive/master.zip](https://github.com/MillerLabFTW/IntussusceptionAddon/archive/master.zip)
 
 1. Unzip the repository. You should find the required `IntusAddon.py` inside.
 
-1. In Blender, navigate to `User Preferences > Add-ons > Install from File ` and find and select the `IntusAddon.py` file in this repository and activate it. Screenshots:
+1. In Blender, navigate to `User Preferences > Add-ons > Install from File ` and find and select the `IntusAddon.py` file in this repository and activate it. If you are using `Blender 2.7x`, use the file `IntusAddon_b2.7x.py`. Screenshots:
 
 ![UserPrefs](PicsVids/ShowUserPrefs.png)
 ![UserPrefs](PicsVids/UserPrefs-InstallFromFile.png)
