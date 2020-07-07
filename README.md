@@ -4,6 +4,8 @@ Authored by Saarang Panchavati, Miller Lab, Rice University, July 2016 | Advisor
 
 A [Blender](http://www.blender.org) add-on for generating Intussusception fractal vasculature for 3D printing and computational fluid dynamics simulations and modeling.
 
+Vascular networks designed with this add-on are featured in our [Nature BME paper](https://rdcu.be/b5tHy) on laser-sintered carbohydrate templates for patterning complex tissue architecture. 
+
 ![MillerLab logo](Intussusception.png)
 
 
